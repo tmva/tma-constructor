@@ -74,7 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Публикация
   btnPublish.addEventListener('click', async () => {
     const projectData = {
-      id: 'test_' + Date.now(), // временный ID
+      projectId: 'test_' + Date.now(), // временный ID
       name: projectNameInput.value || 'Мой магазин',
       template: template
     };
