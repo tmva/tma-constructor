@@ -1,0 +1,27 @@
+# Конфиги с ключами
+config.py
+.env
+*.env
+secrets/
+
+# Питон
+__pycache__/
+*.pyc
+venv/
+env/
+
+# Node.js
+node_modules/
+
+# Базы данных
+*.db
+*.sqlite3
+
+# Логи
+*.log
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo

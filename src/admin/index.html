@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Конструктор TMA</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <h1>Мои проекты</h1>
+      <button id="create-project" class="btn btn-primary">+ Создать проект</button>
+    </header>
+
+    <div id="projects-list" class="projects-grid">
+      <!-- Проекты загружаются сюда -->
+    </div>
+
+    <!-- Модалка выбора шаблона -->
+    <div id="modal-template" class="modal hidden">
+      <div class="modal-content">
+        <h2>Выберите шаблон</h2>
+        <div class="templates">
+          <div class="template-card" data-template="shop">
+            <h3>🛒 Магазин</h3>
+            <p>Товары, корзина, онлайн-оплата</p>
+          </div>
+          <div class="template-card" data-template="booking">
+            <h3>📅 Запись</h3>
+            <p>Календарь, услуги, напоминания</p>
+          </div>
+          <div class="template-card" data-template="integration">
+            <h3>🔌 Интеграция</h3>
+            <p>Подключение внешних сервисов</p>
+          </div>
+        </div>
+        <button id="close-modal" class="btn btn-secondary">Отмена</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="dashboard.js"></script>
+</body>
+</html>
