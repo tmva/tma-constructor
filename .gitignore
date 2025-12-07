@@ -24,4 +24,4 @@ node_modules/
 .vscode/
 .idea/
 *.swp
-*.swo
+*.swo.DS_Store

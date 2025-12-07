@@ -3,7 +3,25 @@ const fs = require('fs');
 const path = require('path');
 
 exports.handler = async (event) => {
-  const { projectId, settings } = JSON.parse(event.body);
+  // Проверяем, есть ли тело запроса
+  if (!event.body) {
+    return {
+      statusCode: 400,
+      body: JSON.stringify({ error: 'No request body' })
+    };
+  }
+
+  let projectData;
+  try {
+    projectData = JSON.parse(event.body);
+  } catch (e) {
+    return {
+      statusCode: 400,
+      body: JSON.stringify({ error: 'Invalid JSON' })
+    };
+  }
+
+  const { projectId, settings } = projectData;
   
   // 1. Копируем шаблон
   const templateDir = path.join(__dirname, '../../src/templates/shop');
@@ -23,7 +41,7 @@ exports.handler = async (event) => {
   return {
     statusCode: 200,
     body: JSON.stringify({ 
-      url: `https://your-netlify-url.netlify.app/deployed/${projectId}/`
+      url: `https://beamish-cocada-b76084.netlify.app/deployed/${projectId}/`
     })
   };
 };
