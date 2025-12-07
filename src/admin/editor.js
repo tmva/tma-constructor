@@ -64,10 +64,10 @@ document.addEventListener('DOMContentLoaded', () => {
       });
       const result = await res.json();
       if (result.success) {
-        tg.showAlert('Проект сохранён');
+        alert('Проект сохранён');
       }
     } catch (error) {
-      tg.showAlert('Ошибка сохранения');
+      alert('Ошибка сохранения');
     }
   });
 
@@ -79,11 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
       template: template
     };
 
-    tg.showPopup({
-      title: 'Публикация',
-      message: 'Запускаю деплой...',
-      buttons: [{ type: 'ok' }]
-    });
+    alert('Запускаю деплой...');
 
     try {
       const res = await fetch('/api/deploy-project', {
@@ -94,14 +90,10 @@ document.addEventListener('DOMContentLoaded', () => {
       const result = await res.json();
       
       if (result.url) {
-        tg.showPopup({
-          title: 'Готово!',
-          message: `Магазин опубликован: ${result.url}`,
-          buttons: [{ type: 'ok' }]
-        });
+        alert(`Готово! Магазин опубликован: ${result.url}`);
       }
     } catch (error) {
-      tg.showAlert('Ошибка деплоя');
+      alert('Ошибка деплоя');
     }
   });
 
