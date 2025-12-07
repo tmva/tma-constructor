@@ -166,3 +166,97 @@ h1 {
   color: #6c757d;
   font-size: 14px;
 }
+
+/* Editor */
+.editor-tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 30px;
+  border-bottom: 2px solid #e9ecef;
+  padding-bottom: 10px;
+}
+
+.tab {
+  padding: 12px 20px;
+  background: none;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  color: #6c757d;
+  transition: all 0.2s;
+}
+
+.tab.active {
+  color: #2481cc;
+  background: #e8f4ff;
+}
+
+.tab-pane {
+  display: none;
+  animation: fadeIn 0.3s;
+}
+
+.tab-pane.active {
+  display: block;
+}
+
+.form-group {
+  margin-bottom: 24px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #343a40;
+}
+
+.form-input, .form-textarea, .form-select {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid #ced4da;
+  border-radius: 10px;
+  font-size: 16px;
+  transition: border 0.2s;
+}
+
+.form-input:focus, .form-textarea:focus, .form-select:focus {
+  border-color: #2481cc;
+  outline: none;
+}
+
+.form-color {
+  width: 60px;
+  height: 40px;
+  padding: 2px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.template-section {
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 12px;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.help {
+  font-size: 14px;
+  color: #6c757d;
+  margin-top: 6px;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
