@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Магазин</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1 id="shop-name">Магазин</h1>
+      <div class="cart-icon" id="cart-btn">🛒 <span id="cart-count">0</span></div>
+    </header>
+
+    <div id="products-container" class="products-grid">
+      <!-- Товары загружаются через JS -->
+    </div>
+
+    <!-- Корзина -->
+    <div id="cart-sidebar" class="sidebar hidden">
+      <div class="sidebar-header">
+        <h2>Корзина</h2>
+        <button id="close-cart">✕</button>
+      </div>
+      <div id="cart-items"></div>
+      <div class="cart-footer">
+        <div class="total">Итого: <span id="cart-total">0</span> ₽</div>
+        <button id="checkout-btn" class="btn-checkout">Оформить заказ</button>
+      </div>
+    </div>
+
+    <!-- Оформление -->
+    <div id="checkout-modal" class="modal hidden">
+      <div class="modal-content">
+        <h2>Оформление</h2>
+        <form id="checkout-form">
+          <input type="text" placeholder="Ваше имя" required>
+          <input type="tel" placeholder="Телефон" required>
+          <textarea placeholder="Адрес доставки"></textarea>
+          <div class="payment-methods">
+            <label><input type="radio" name="payment" value="yoomoney" checked> ЮMoney</label>
+            <label><input type="radio" name="payment" value="sbp"> СБП</label>
+          </div>
+          <button type="submit" class="btn-checkout">Подтвердить заказ</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

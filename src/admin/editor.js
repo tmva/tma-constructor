@@ -64,20 +64,98 @@ document.addEventListener('DOMContentLoaded', () => {
       });
       const result = await res.json();
       if (result.success) {
-        alert('Сохранено');
+        tg.showAlert('Проект сохранён');
       }
     } catch (error) {
-      alert('Ошибка сохранения');
+      tg.showAlert('Ошибка сохранения');
     }
   });
 
-  // Публикация (заглушка)
-  btnPublish.addEventListener('click', () => {
-    alert('Функция публикации будет реализована в следующем шаге');
+  // Публикация
+  btnPublish.addEventListener('click', async () => {
+    const projectData = {
+      id: 'test_' + Date.now(), // временный ID
+      name: projectNameInput.value || 'Мой магазин',
+      template: template
+    };
+
+    tg.showPopup({
+      title: 'Публикация',
+      message: 'Запускаю деплой...',
+      buttons: [{ type: 'ok' }]
+    });
+
+    try {
+      const res = await fetch('/api/deploy-project', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(projectData)
+      });
+      const result = await res.json();
+      
+      if (result.url) {
+        tg.showPopup({
+          title: 'Готово!',
+          message: `Магазин опубликован: ${result.url}`,
+          buttons: [{ type: 'ok' }]
+        });
+      }
+    } catch (error) {
+      tg.showAlert('Ошибка деплоя');
+    }
   });
 
   // Динамическое обновление названия
   projectNameInput.addEventListener('input', () => {
     projectTitle.textContent = projectNameInput.value || 'Новый проект';
   });
+
+  // Управление товарами (магазин)
+  if (template === 'shop') {
+    const productsList = document.getElementById('products-list');
+    const btnAddProduct = document.getElementById('btn-add-product');
+    const modalItem = document.getElementById('modal-item');
+    const btnCancelItem = document.getElementById('btn-cancel-item');
+    const btnSaveItem = document.getElementById('btn-save-item');
+
+    let products = [];
+
+    function renderProducts() {
+      productsList.innerHTML = products.map((p, i) => `
+        <div class="product-item">
+          <strong>${p.name}</strong> – ${p.price} ₽
+          <button onclick="removeProduct(${i})">🗑</button>
+        </div>
+      `).join('');
+    }
+
+    window.removeProduct = (index) => {
+      products.splice(index, 1);
+      renderProducts();
+    };
+
+    btnAddProduct.addEventListener('click', () => {
+      modalItem.classList.remove('hidden');
+    });
+
+    btnCancelItem.addEventListener('click', () => {
+      modalItem.classList.add('hidden');
+    });
+
+    btnSaveItem.addEventListener('click', () => {
+      const name = document.getElementById('item-name').value;
+      const price = document.getElementById('item-price').value;
+      const desc = document.getElementById('item-description').value;
+
+      if (name && price) {
+        products.push({ name, price, description: desc });
+        renderProducts();
+        modalItem.classList.add('hidden');
+        // Очищаем поля
+        document.getElementById('item-name').value = '';
+        document.getElementById('item-price').value = '';
+        document.getElementById('item-description').value = '';
+      }
+    });
+  }
 });
